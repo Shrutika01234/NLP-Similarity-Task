@@ -7,6 +7,5 @@ predict.ipynb: Use this notebook to get the prediction on custom sentences.
 tester.py: this file can be run to get the accuracy on the data. and output is store in final_pred.csv
 ```
 $ python tester.py
-```
 $ python app.py
 ```
