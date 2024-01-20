@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Similarity Calculator</title>
+</head>
+<body>
+    <h1>Text Similarity Calculator</h1>
+    <form id="text-similarity-form">
+        <label for="text1">Text 1:</label>
+        <input type="text" id="text1" name="text1" required>
+        <br>
+        <label for="text2">Text 2:</label>
+        <input type="text" id="text2" name="text2" required>
+        <br>
+        <button type="button" onclick="calculateSimilarity()">Calculate Similarity</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function calculateSimilarity() {
+            var text1 = document.getElementById("text1").value;
+            var text2 = document.getElementById("text2").value;
+
+            fetch('/text-similarity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text1: text1, text2: text2 }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.hasOwnProperty('similarity_score')) {
+                    document.getElementById("result").innerText = "Similarity Score: " + data.similarity_score.toFixed(4);
+                } else {
+                    throw new Error('Invalid response from the server');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById("result").innerText = "Error calculating similarity";
+            });
+        }
+    </script>
+</body>
+</html>

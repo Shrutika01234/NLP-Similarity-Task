@@ -1,0 +1,5 @@
+params:
+  BATCH_SIZE: 28
+  learning_rate: 0.00005
+  model_name: 'Sakil/sentence_similarity_semantic_search'
+  device: 'cuda:1'

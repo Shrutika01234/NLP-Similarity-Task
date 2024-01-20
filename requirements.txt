@@ -1,0 +1,17 @@
+torch
+pandas 
+transformers 
+tqdm 
+numpy
+scikit-learn
+protobuf==3.20.0
+wandb
+gql
+sentence_transformers
+flask
+gunicorn
+
+
+
+
+
